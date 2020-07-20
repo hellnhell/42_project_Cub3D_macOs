@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:28:42 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/19 10:05:24 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/07/17 18:10:12 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	mlx_win_init(t_tab *t)
 	mlx_hook(t->window, 17, 0, ft_exit, t);
 	mlx_hook(t->window, 2, 0, ft_press_key, t);
 	mlx_hook(t->window, 3, 0, ft_release_key, t);
+	init_variables(t);
 }
 
 void	init_variables(t_tab *t)
 {
 	t->help = 1;
-	t->move_speed = 0.08;
-	t->rot_speed = 0.05;
+	t->move_speed = 0.1;
+	t->rot_speed = 0.08;
 	t->up = 0;
 	t->down = 0;
 	t->left = 0;
@@ -52,16 +53,16 @@ int		main(int argc, char **argv)
 
 	if (argc < 2)
 		ft_exit("ERROR\nArgs number error");
-	if (!(fd = open(argv[1], O_RDONLY)))
-		ft_exit("ERROR\nNo such file");
 	if (!(t = malloc(sizeof(t_tab))))
 		ft_exit("ERROR\nMalloc struct error");
-	if (ft_get_spec(t, fd) == 0)
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		ft_exit("ERROR\nNo such file");
+	if (!(ft_get_spec(t, fd) == 1))
 		ft_exit("ERROR\nReading map error");
 	if (!(t->zbuffer = malloc(sizeof(double) * t->swidth)))
 		ft_exit("ERROR\nBuffer error");
 	mlx_win_init(t);
-	init_variables(t);
 	load_textures(t);
 	if (argc == 3 && ft_strncmp("--save", argv[2], 6) == 0)
 		ray_casting_bmp(t);

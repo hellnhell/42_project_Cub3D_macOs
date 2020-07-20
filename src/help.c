@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:10:43 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/12 12:06:20 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/06/29 16:04:51 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		help_text(t_tab *t)
 
 void		ft_press_key2(int keycode, t_tab *t)
 {
-	if (keycode == H_KEY)
+	if (keycode == KEY_H)
 	{
 		if (t->help == 0)
 			t->help = 1;

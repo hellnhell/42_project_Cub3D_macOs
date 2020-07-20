@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 12:02:11 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/12 12:45:25 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/07/14 17:41:36 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		calculate_sprites(t_tab *t)
 
 static void		ft_sprite(t_tab *t, int y, int x)
 {
-	t->y_tex = abs((y - t->draw_start_y) / (t->sprite_height /
+	t->y_tex = fabs((y - t->draw_start_y) / (t->sprite_height /
 			(double)t->tex[7].h));
 	if ((t->tex[7].data[t->y_tex * t->tex[7].sl
 		+ t->x_tex * t->tex[7].bpp / 8] != 0))

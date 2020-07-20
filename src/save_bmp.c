@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_bmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 11:52:12 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/16 12:30:22 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/06/29 18:29:16 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int		write_bmp_data(int file, t_tab *t, int pad)
 	i = -1;
 	while (++i < (int)t->sheight)
 	{
-		j = -1;
+		j = 0;
 		while (++j <= (int)t->swidth)
 		{
 			color = get_color(t, j, i);

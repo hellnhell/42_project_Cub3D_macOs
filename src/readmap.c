@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 13:10:57 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/12 12:41:39 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/07/15 18:20:24 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ static void	get_spec(t_tab *t)
 		ft_exit("ERROR\nSPRITE");
 }
 
+void		get_spec_floor(t_tab *t, char *line)
+{
+	(line[0] == 'S' && line[1] == ' ')
+		? t->path_sprite = ft_strdup(line + 2) : 0;
+	(line[0] == 'F' && line[1] == ' ')
+		? t->col_floor = ft_get_col(line) : 0;
+}
+
 int			ft_get_spec(t_tab *t, int fd)
 {
 	char *tmp;
@@ -53,15 +61,13 @@ int			ft_get_spec(t_tab *t, int fd)
 				t->we_tex = ft_strdup(line + 3) : 0;
 		(line[0] == 'E' && line[1] == 'A' && line[2] == ' ') ?
 				t->ea_tex = ft_strdup(line + 3) : 0;
-		(line[0] == 'S' && line[1] == ' ')
-		? t->path_sprite = ft_strdup(line + 2) : 0;
-		(line[0] == 'F' && line[1] == ' ')
-		? t->col_floor = ft_get_col(line) : 0;
+		get_spec_floor(t, line);
 		(line[0] == '1' || line[0] == 32) ? ft_get_map(t, &line, fd) : 0;
 		free(tmp);
 	}
 	get_spec(t);
 	close(fd);
+	free(line);
 	return (1);
 }
 

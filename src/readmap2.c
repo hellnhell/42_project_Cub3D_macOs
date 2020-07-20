@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readmap2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:40:31 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/12 12:43:06 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/07/17 18:15:24 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_get_coord(t_tab *t)
 	return (0);
 }
 
-void	ft_correct(char **line, t_tab *t, int fd)
+void	ft_correct_fstline(char **line, t_tab *t, int fd)
 {
 	char	*aux;
 
@@ -49,19 +49,10 @@ void	ft_correct(char **line, t_tab *t, int fd)
 	if (*aux)
 	{
 		t->map[0] = ft_strdup(*line);
+		free(aux);
 		return ;
 	}
-	free(aux);
-	while (get_next_line(fd, line))
-	{
-		aux = ft_strtrim(*line, " ");
-		if (*aux)
-		{
-			t->map[0] = ft_strdup(*line);
-			break ;
-		}
-		free(aux);
-	}
+	get_next_line(fd, line);
 }
 
 void	ft_get_map(t_tab *t, char **line, int fd)
@@ -71,7 +62,7 @@ void	ft_get_map(t_tab *t, char **line, int fd)
 	if (!(t->map = (char **)ft_calloc(1000000, sizeof(char *))))
 		ft_exit("ERROR\nMap mem error");
 	map_line = 1;
-	ft_correct(line, t, fd);
+	ft_correct_fstline(line, t, fd);
 	while (get_next_line(fd, line) == 1)
 	{
 		t->map[map_line] = ft_strdup(*line);

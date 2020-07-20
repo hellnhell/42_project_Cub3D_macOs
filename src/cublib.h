@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cublib.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:24:24 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/19 10:04:38 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/07/14 17:48:30 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBLIB_H
 # define CUBLIB_H
+# include <mlx.h>
 # include "libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -19,11 +20,6 @@
 # include <math.h>
 # include <fcntl.h>
 # include <string.h>
-
-typedef struct	s_sound
-{
-	clock_t		last_start_song;
-}				t_sound;
 
 typedef struct	s_tex
 {
@@ -141,7 +137,6 @@ typedef struct	s_tab
 	int			sprite_posx;
 	int			sprite_posy;
 	int			player_pos;
-	t_sound		*sound;
 }				t_tab;
 
 int				ft_exit(char *mess);
@@ -179,10 +174,11 @@ void			ft_check_first_line(t_tab *t);
 int				ft_check_in_set_char(char to_test, char *dataset);
 int				ft_check_map_content_and_size(char **map);
 int				ft_check_map_border(char **map);
-void			ft_correct(char **line, t_tab *t, int fd);
+void			ft_correct_fstline(char **line, t_tab *t, int fd);
 void			map_config_check(t_tab *t);
 void			ft_border_errors(t_tab *t, int i, int j);
 void			init_bmp(t_tab *t);
+void			get_spec_floor(t_tab *t, char *line);
 
 # define RGB_WHITE 0xFFFFFF
 # define RGB_BLACK 0x000000

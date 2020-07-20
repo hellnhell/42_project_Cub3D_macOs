@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+        */
+/*   By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 16:51:22 by emartin-          #+#    #+#             */
-/*   Updated: 2020/06/12 12:34:08 by hellnhell        ###   ########.fr       */
+/*   Updated: 2020/07/14 17:40:17 by emartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int		ft_press_key(int key, t_tab *t)
 {
-	if (key == W_KEY || key == UP_KEY)
+	if (key == KEY_W || key == KEY_UP)
 		t->up = 1;
-	if (key == S_KEY || key == DOWN_KEY)
+	if (key == KEY_S || key == KEY_DOWN)
 		t->down = 1;
-	if (key == LEFT_KEY)
+	if (key == KEY_LEFT)
 		t->rot_left = 1;
-	if (key == A_KEY)
+	if (key == KEY_A)
 		t->left = 1;
-	if (key == RIGHT_KEY)
+	if (key == KEY_RIGHT)
 		t->rot_right = 1;
-	if (key == D_KEY)
+	if (key == KEY_D)
 		t->right = 1;
-	else if (key == TAB_KEY)
+	else if (key == KEY_TAB)
 		t->move_speed = 0.1;
 	else
 		ft_press_key2(key, t);
@@ -35,21 +35,21 @@ int		ft_press_key(int key, t_tab *t)
 
 int		ft_release_key(int key, t_tab *t)
 {
-	if (key == W_KEY || key == UP_KEY)
+	if (key == KEY_W || key == KEY_UP)
 		t->up = 0;
-	if (key == S_KEY || key == DOWN_KEY)
+	if (key == KEY_S || key == KEY_DOWN)
 		t->down = 0;
-	if (key == LEFT_KEY)
+	if (key == KEY_LEFT)
 		t->rot_left = 0;
-	if (key == A_KEY)
+	if (key == KEY_A)
 		t->left = 0;
-	if (key == RIGHT_KEY)
+	if (key == KEY_RIGHT)
 		t->rot_right = 0;
-	if (key == D_KEY)
+	if (key == KEY_D)
 		t->right = 0;
-	else if (key == TAB_KEY)
+	else if (key == KEY_TAB)
 		t->move_speed = 0.05;
-	if (key == ESC_KEY)
+	if (key == KEY_ESC)
 		ft_exit("");
 	return (0);
 }
