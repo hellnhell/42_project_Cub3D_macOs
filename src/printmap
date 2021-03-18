@@ -1,5 +1,0 @@
-while (t->map[i])
-	{
-		printf("%s\n", t->map[i]);
-		i++;
-	}

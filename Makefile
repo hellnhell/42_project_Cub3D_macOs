@@ -3,12 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hellnhell <hellnhell@student.42.fr>        +#+  +:+       +#+         #
+#    By: emartin- <emartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:34:43 by emartin-          #+#    #+#              #
-#    Updated: 2020/06/19 10:01:44 by hellnhell        ###   ########.fr        #
+#    Updated: 2020/07/07 18:54:20 by emartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 NAME    =   Cub3D
 
@@ -25,7 +27,6 @@ SRCS    =   src/main.c              \
             src/check_map.c         \
             src/sprites.c           \
 
-MLX     =   -lmxl -lm -framework OpenGL -framework AppKit
 
 LIBFT   =   libft/libft.a
 
@@ -33,26 +34,24 @@ OBJS    =   $(SRCS:.c=.o)
 
 CFLAGS  = -O3 -Wall -Wextra -Werror -I.
 
+MLX    = -lmlx -lm -framework OpenGL -framework AppKit
 
-$(NAME):    $(OBJS)
+
+$(NAME):	$(OBJS)
 		@$(MAKE) -C libft
-        @gcc $(OBJS) -I./includes -I./usr/include ${CFLAGS} ${MLX} ${LIBFT} -o $(NAME) 
-			 
+		@gcc $(OBJS) -I./includes -I./usr/include ${CFLAGS} ${LIBFT} ${MLX} -o $(NAME)
+			
+			
 all		: $(NAME)
 
 
 clean   :
 		rm -rf $(OBJS)
-		@$(MAKE) clean -C libft
+		@$(MAKE) -C libft clean
 
 fclean  :   clean
-        @$(MAKE) clean -C libft 
-		rm -rf $(NAME)
+		rm -rf $(NAME) $(LIBFT)
 
 re      :   fclean all
 
 .PHONY  :   all clean fclean re
-
-
-
-
